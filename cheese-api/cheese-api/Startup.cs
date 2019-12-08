@@ -23,11 +23,12 @@ namespace cheese_api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
-            // Register the Swagger generator, defining 1 or more Swagger documents
+            
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "PZ Cheeseria API", Version = "v1"});
+                
+                c.EnableAnnotations();
 
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
