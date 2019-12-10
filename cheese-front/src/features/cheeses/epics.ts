@@ -1,16 +1,16 @@
-import { RootEpic } from 'MyTypes';
-import { isActionOf } from 'typesafe-actions';
+import { isActionOf, RootEpic } from 'typesafe-actions';
 import { first, filter, map, catchError, switchMap } from 'rxjs/operators'
 import { of } from 'rxjs';
 
 import { loadCheesesAsync } from './actions';
+import { getCheeses } from './api';
 
-export const loadCheeses: RootEpic = (action$, store, {api}) =>
+export const loadCheeses: RootEpic = action$ =>
     action$.pipe(
         filter(isActionOf(loadCheesesAsync.request)),
         switchMap(() =>
-            api.cheeses.get().pipe(
-                map(loadCheesesAsync.success),
+            getCheeses().pipe(
+                map(cheeses => loadCheesesAsync.success(cheeses)),
                 catchError(message => of(loadCheesesAsync.failure(message)))
             )
         )
@@ -19,5 +19,5 @@ export const loadCheeses: RootEpic = (action$, store, {api}) =>
 export const loadDataOnAppStart: RootEpic = action$ =>
     action$.pipe(
         first(),
-        map(loadCheesesAsync.request)
+        map(() => loadCheesesAsync.request())
     );

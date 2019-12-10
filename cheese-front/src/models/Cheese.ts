@@ -8,3 +8,5 @@ export class Cheese {
     ) {
     }
 }
+
+export const getTestCheese = () => new Cheese(1, 'name', 'imageUrl', 'color', 10);

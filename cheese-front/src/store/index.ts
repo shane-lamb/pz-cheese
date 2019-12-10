@@ -1,14 +1,11 @@
-import { RootAction, RootState, Services } from 'MyTypes';
+import { RootAction, RootState } from 'typesafe-actions';
 import { createStore, applyMiddleware } from 'redux';
 import { createEpicMiddleware } from 'redux-observable';
 
 import rootReducer from './root-reducer';
 import rootEpic from './root-epic';
-import services from '../services';
 
-export const epicMiddleware = createEpicMiddleware<RootAction, RootAction, RootState, Services>({
-    dependencies: services
-});
+export const epicMiddleware = createEpicMiddleware<RootAction, RootAction, RootState, undefined>();
 
 // rehydrate state on app start
 const initialState = {};

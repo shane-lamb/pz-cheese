@@ -1,8 +1,6 @@
 import { cheesesReducer } from './reducer';
 import { loadCheesesAsync } from './actions';
-import { Cheese } from '../../models/Cheese';
-
-const getTestCheese = () => new Cheese(1, 'name', 'imageUrl', 'color', 10);
+import { getTestCheese } from '../../models/Cheese';
 
 describe('cheeses reducer', () => {
     describe('getting cheeses', () => {

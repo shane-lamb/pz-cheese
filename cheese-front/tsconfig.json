@@ -1,6 +1,5 @@
 {
-  "include": ["src", "typings", "lambdas/src"],
-  "exclude": ["src/**/*.spec.*"],
+  "include": ["src"],
   "extends": "./node_modules/react-redux-typescript-scripts/tsconfig.json",
   "compilerOptions": {}
 }
