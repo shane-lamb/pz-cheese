@@ -46,12 +46,9 @@ describe('cheeses epics', () => {
         });
         it('should load cheeses on app start', () => {
             testScheduler().run(({ hot, expectObservable }) => {
-                const action$ = hot('-a', {
-                    a: {}
-                });
-                const output$ = loadDataOnAppStart(action$ as any, null as any, undefined);
+                const output$ = loadDataOnAppStart(null as any, null as any, undefined);
 
-                expectObservable(output$).toBe('-(a|)', {
+                expectObservable(output$).toBe('(a|)', {
                     a: loadCheesesAsync.request()
                 });
             });

@@ -1,5 +1,5 @@
 import { isActionOf, RootEpic } from 'typesafe-actions';
-import { first, filter, map, catchError, switchMap } from 'rxjs/operators'
+import { filter, map, catchError, switchMap } from 'rxjs/operators'
 import { of } from 'rxjs';
 
 import { loadCheesesAsync } from './actions';
@@ -16,8 +16,4 @@ export const loadCheeses: RootEpic = action$ =>
         )
     );
 
-export const loadDataOnAppStart: RootEpic = action$ =>
-    action$.pipe(
-        first(),
-        map(() => loadCheesesAsync.request())
-    );
+export const loadDataOnAppStart: RootEpic = () => of(loadCheesesAsync.request());

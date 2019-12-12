@@ -9,4 +9,10 @@ export class Cheese {
     }
 }
 
-export const getTestCheese = () => new Cheese(1, 'name', 'imageUrl', 'color', 10);
+export const getTestCheese = () => new Cheese(
+    1,
+    'Brie',
+    'https://cheese.com/media/img/cheese/Brie_PDCo3RG.jpg',
+    'Cream',
+    30
+);

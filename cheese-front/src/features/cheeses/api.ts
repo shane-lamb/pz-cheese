@@ -1,7 +1,7 @@
 import { Observable, of } from 'rxjs';
 
-import { Cheese } from '../../models/Cheese';
+import { Cheese, getTestCheese } from '../../models/Cheese';
 
 export function getCheeses(): Observable<Cheese[]> {
-    return of([]);
+    return of([getTestCheese(), getTestCheese(), getTestCheese(), getTestCheese(), getTestCheese()]);
 }
