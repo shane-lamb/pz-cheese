@@ -1,6 +1,6 @@
 using Newtonsoft.Json;
 
-namespace cheese_api.Models
+namespace CheeseApi.Models
 {
     public class ErrorResponse
     {

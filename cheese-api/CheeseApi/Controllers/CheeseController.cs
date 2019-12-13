@@ -1,10 +1,12 @@
 using System.Collections.Generic;
-using cheese_api.Models;
+using System.Linq;
+using CheeseApi.DataContext;
+using CheeseApi.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace cheese_api.Controllers
+namespace CheeseApi.Controllers
 {
     [ApiController]
     [Route("/cheeses")]
@@ -12,24 +14,33 @@ namespace cheese_api.Controllers
     [Produces("application/json")]
     public class CheeseController : ControllerBase
     {
+        private CheeseDbContext _db;
+
+        public CheeseController(CheeseDbContext db)
+        {
+            _db = db;
+        }
+        
         /// <summary>
         /// Get a list of all cheeses
         /// </summary>
         [HttpGet]
-        public List<CheeseResponse> Get()
+        public List<Cheese> Get()
         {
-            return new List<CheeseResponse>();
+            return _db.Cheeses.ToList();
         }
         
         /// <summary>
         /// Create a cheese
         /// </summary>
         [HttpPost]
-        [SwaggerResponse(StatusCodes.Status200OK, "Successfully created the cheese", typeof(CheeseResponse))]
+        [SwaggerResponse(StatusCodes.Status200OK, "Successfully created the cheese", typeof(Cheese))]
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Invalid request body", typeof(ErrorResponse))]
-        public CheeseResponse Create(CheeseRequest request)
+        public Cheese Create(CheeseRequest request)
         {
-            return new CheeseResponse();
+            var result = _db.Cheeses.Add(request.ToCheese(0));
+            _db.SaveChanges();
+            return result.Entity;
         }
 
         /// <summary>
@@ -41,7 +52,15 @@ namespace cheese_api.Controllers
         [SwaggerResponse(StatusCodes.Status400BadRequest, "Invalid request body", typeof(ErrorResponse))]
         public void Update(long id, CheeseRequest request)
         {
+            var updated = _db.Cheeses.Find(id);
             
+            updated.Name = request.Name;
+            updated.Color = request.Color;
+            updated.ImageUrl = request.ImageUrl;
+            updated.PricePerKilo = request.PricePerKilo;
+            
+            _db.Cheeses.Update(updated);
+            _db.SaveChanges();
         }
         
         /// <summary>
@@ -52,7 +71,8 @@ namespace cheese_api.Controllers
         [SwaggerResponse(StatusCodes.Status404NotFound, "Could not find a cheese matching given ID", typeof(ErrorResponse))]
         public void Delete(long id)
         {
-            
+            _db.Cheeses.Remove(_db.Cheeses.Find(id));
+            _db.SaveChanges();
         }
     }
 }

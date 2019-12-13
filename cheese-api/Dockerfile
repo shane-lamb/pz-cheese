@@ -3,16 +3,17 @@ WORKDIR /app
 
 # copy csproj and restore as distinct layers
 COPY *.sln .
-COPY cheese-api/*.csproj ./cheese-api/
+COPY CheeseApi/*.csproj ./CheeseApi/
+COPY Tests/*.csproj ./Tests/
 RUN dotnet restore
 
 # copy everything else and build app
-COPY cheese-api/. ./cheese-api/
-WORKDIR /app/cheese-api
+COPY CheeseApi/. ./CheeseApi/
+WORKDIR /app/CheeseApi
 RUN dotnet publish -c Release -o out
 
 
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS runtime
 WORKDIR /app
-COPY --from=build /app/cheese-api/out ./
-ENTRYPOINT ["dotnet", "cheese-api.dll"]
+COPY --from=build /app/CheeseApi/out ./
+ENTRYPOINT ["dotnet", "CheeseApi.dll"]

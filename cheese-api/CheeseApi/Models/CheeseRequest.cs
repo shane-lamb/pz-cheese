@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace cheese_api.Models
+namespace CheeseApi.Models
 {
     public class CheeseRequest
     {
@@ -23,5 +23,17 @@ namespace cheese_api.Models
         /// <example>49.99</example>>
         [Required]
         public decimal PricePerKilo { get; set; }
+
+        public Cheese ToCheese(long id)
+        {
+            return new Cheese
+            {
+                Id = id,
+                Name = Name,
+                Color = Color,
+                ImageUrl = ImageUrl,
+                PricePerKilo = PricePerKilo
+            };
+        }
     }
 }

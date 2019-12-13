@@ -1,6 +1,6 @@
-namespace cheese_api.Models
+namespace CheeseApi.Models
 {
-    public class CheeseResponse: CheeseRequest
+    public class Cheese: CheeseRequest
     {
         /// <example>1</example>>
         public long Id { get; set; }
