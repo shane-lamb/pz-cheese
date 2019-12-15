@@ -26,7 +26,7 @@ describe('cheeses reducer', () => {
                 expect(state.calculators).toEqual({
                     1: {
                         visible: true,
-                        selectedWeight: 0
+                        selectedWeight: undefined
                     }
                 });
             });
@@ -59,7 +59,7 @@ describe('cheeses reducer', () => {
                     1: initialState.calculators[1],
                     2: {
                         visible: true,
-                        selectedWeight: 0
+                        selectedWeight: undefined
                     }
                 });
             });

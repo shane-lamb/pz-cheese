@@ -15,7 +15,7 @@ export const cheesesReducer = combineReducers({
                 ...state,
                 [payload.cheeseId]: {
                     visible: !existing.visible,
-                    selectedWeight: existing.selectedWeight || 0
+                    selectedWeight: existing.selectedWeight
                 }
             };
         })
@@ -24,11 +24,9 @@ export const cheesesReducer = combineReducers({
             return {
                 ...state,
                 [payload.cheeseId]: {
-                    visible: existing.visible,
+                    ...existing,
                     selectedWeight: payload.weight
                 }
             };
         })
 });
-
-export type CheesesState = ReturnType<typeof cheesesReducer>;
