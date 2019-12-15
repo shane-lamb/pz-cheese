@@ -1,18 +1,17 @@
-export class Cheese {
-    constructor(
-        public id: number,
-        public name: string,
-        public imageUrl: string,
-        public color: string,
-        public pricePerKilo: number
-    ) {
-    }
+export interface Cheese {
+    id: number;
+    name: string;
+    imageUrl: string;
+    color: string;
+    pricePerKilo: number;
 }
 
-export const getTestCheese = () => new Cheese(
-    1,
-    'Brie',
-    'https://cheese.com/media/img/cheese/Brie_PDCo3RG.jpg',
-    'Cream',
-    30
-);
+export function getTestCheese(): Cheese {
+    return {
+        id: 1,
+        name: 'Brie',
+        imageUrl: 'https://cheese.com/media/img/cheese/Brie_PDCo3RG.jpg',
+        color: 'Cream',
+        pricePerKilo: 30
+    };
+}
