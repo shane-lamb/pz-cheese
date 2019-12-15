@@ -1,10 +1,10 @@
 export class Cheese {
     constructor(
-        public Id: number,
-        public Name: string,
-        public ImageUrl: string,
-        public Color: string,
-        public PricePerKilo: number
+        public id: number,
+        public name: string,
+        public imageUrl: string,
+        public color: string,
+        public pricePerKilo: number
     ) {
     }
 }

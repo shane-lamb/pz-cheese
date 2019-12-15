@@ -17,7 +17,7 @@ const component: React.FC<Props> = ({cheeses}) => {
     return (
         <Row xs="1" md="2" lg="3">
             {cheeses.map(cheese => (
-                <Col key={cheese.Id} style={{ marginBottom: '30px' }}>
+                <Col key={cheese.id} style={{ marginBottom: '30px' }}>
                     <CheeseListItem cheese={cheese}/>
                 </Col>
             ))}

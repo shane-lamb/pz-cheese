@@ -9,7 +9,7 @@ using Swashbuckle.AspNetCore.Annotations;
 namespace CheeseApi.Controllers
 {
     [ApiController]
-    [Route("/cheeses")]
+    [Route("/api/cheeses")]
     [Consumes("application/json")]
     [Produces("application/json")]
     public class CheeseController : ControllerBase

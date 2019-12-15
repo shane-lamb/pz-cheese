@@ -50,6 +50,9 @@ namespace CheeseApi
 
             app.UseSwagger();
 
+            app.UseDefaultFiles();
+            app.UseStaticFiles();
+
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "PZ Cheeseria API V1"); });
 
             app.UseRouting();

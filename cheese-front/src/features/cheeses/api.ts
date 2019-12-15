@@ -1,7 +1,9 @@
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { ajax } from 'rxjs/ajax';
 
-import { Cheese, getTestCheese } from '../../models/Cheese';
+import { Cheese } from '../../models/Cheese';
 
 export function getCheeses(): Observable<Cheese[]> {
-    return of([getTestCheese(), getTestCheese(), getTestCheese(), getTestCheese(), getTestCheese()]);
+    return ajax.get('api/cheeses').pipe(map(x => x.response));
 }

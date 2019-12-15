@@ -10,11 +10,11 @@ type Props = {
 export const CheeseListItem = React.memo<Props>(({cheese}) => {
     return (
         <Card>
-            <CardImg top width="100%" src={cheese.ImageUrl} alt={cheese.Name}/>
+            <CardImg top width="100%" src={cheese.imageUrl} alt={cheese.name}/>
             <CardBody>
-                <CardTitle>{cheese.Name}</CardTitle>
-                {row('Colour', cheese.Color)}
-                {row('Price', `$${cheese.PricePerKilo.toFixed(2)} per kg`)}
+                <CardTitle>{cheese.name}</CardTitle>
+                {row('Colour', cheese.color)}
+                {row('Price', `$${cheese.pricePerKilo.toFixed(2)} per kg`)}
             </CardBody>
         </Card>
     );
