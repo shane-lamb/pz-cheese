@@ -1,3 +1,7 @@
+const dollarFormatter = new Intl.NumberFormat('en-AU',
+    { style: 'currency', currency: 'AUD' }
+);
+
 export function formatDollars(number: number) {
-    return '$' + number.toFixed(2);
+    return dollarFormatter.format(number);
 }
